@@ -1,5 +1,6 @@
 # istio
 
+# 1. Donwload Istio
 ```
 $ curl -L https://istio.io/downloadIstio | sh -
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -38,6 +39,7 @@ This will install the Istio 1.11.4 default profile with ["Istio core" "Istiod" "
 ✔ Installation complete                                                         
 Thank you for installing Istio 1.11.  Please take a few minutes to tell us about your install/upgrade experience!  https://forms.gle/kWULBRjUv7hHci7T6
 ```
+# 2. Labeling
 ```
 $ kubectl get ns --show-labels
 $ kubectl get ns default --show-labels
@@ -46,6 +48,9 @@ $ kubectl get ns default --show-labels
 NAME      STATUS   AGE   LABELS
 default   Active   11d   istio-injection=enabled,kubernetes.io/metadata.name=default
 ```
+
+# 3. Checking the running pods
+You can find the pods which contains the sidecar.
 ```
 $ kubectl get pods
 NAME                                                              READY   STATUS    RESTARTS       AGE
@@ -55,6 +60,8 @@ mongo-test-677764f949-8cnpn                                       2/2     Runnin
 nginx-test-7bd87548c9-9n6x5                                       2/2     Running   0              9m57s
 nginx-test-7bd87548c9-mnmwx                                       2/2     Running   0              9m57s
 ```
+
+# 4. Run addons
 ```
 $ cd ~/Desktop/istio-1.11.4/samples/addons
 
@@ -81,6 +88,7 @@ tracing                ClusterIP      10.108.74.27     <none>        80/TCP,1668
 zipkin                 ClusterIP      10.101.155.214   <none>        9411/TCP                                     85s
 ```
 
+# 5. Portforwarding of kiali pod so that you can see from it as browser access
 ```
 $ kubectl port-forward svc/kiali -n istio-system 20001
 ```
